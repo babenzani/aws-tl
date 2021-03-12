@@ -9,7 +9,7 @@ resource "aws_instance" "instance1" {
     vpc_security_group_ids = ["aws_security_group.ssh-allowed.id"]
     
     # the Public SSH key
-    key_name = "${aws_key_pair.london-region-key-pair.id}"
+    key_name = "aws_key_pair.london-region-key-pair.id"
 
     # nginx installation
     provisioner "file" {
@@ -25,12 +25,14 @@ resource "aws_instance" "instance1" {
     }
 
     connection {
-        user = "${var.EC2_USER}"
-        private_key = "${file("${var.PRIVATE_KEY_PATH}")}"
+        user = "var.EC2_USER"
+        #private_key = "${file("${var.PRIVATE_KEY_PATH}")}"
+        private_key = var.PRIVATE_KEY_PATH
+	host = "self.public_ip"
     }
 }
 
 resource "aws_key_pair" "london-region-key-pair" {
     key_name = "london-region-key-pair"
-    public_key = "${file(var.PUBLIC_KEY_PATH)}"
+    public_key = "var.PUBLIC_KEY_PATH)"
 }
