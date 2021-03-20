@@ -3,13 +3,13 @@ resource "aws_instance" "instance1" {
     instance_type = "t2.micro"
   
     # VPC
-    subnet_id = "aws_subnet.prod-subnet-public-1.id"
+    subnet_id = aws_subnet.prod-subnet-public-1.id
   
     # Security Group
     vpc_security_group_ids = ["aws_security_group.ssh-allowed.id"]
     
     # the Public SSH key
-    key_name = "aws_key_pair.london-region-key-pair.id"
+    key_name = aws_key_pair.london-region-key-pair.id
 
     # nginx installation
     provisioner "file" {

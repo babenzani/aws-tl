@@ -1,19 +1,19 @@
 resource "aws_internet_gateway" "prod-igw" {
     #vpc_id = "${aws_vpc.prod-vpc.id}"
-    vpc_id = "aws_vpc.prod-vpc.id"
+    vpc_id = aws_vpc.prod-vpc.id
     tags = {
         Name = "prod-igw"
     }
 }
 
 resource "aws_route_table" "prod-public-inet" {
-    vpc_id = "aws_vpc.prod-vpc.id"
+    vpc_id = aws_vpc.prod-vpc.id
     
     route {
         //associated subnet can reach everywhere
         cidr_block = "0.0.0.0/0" 
         //CRT uses this IGW to reach internet
-        gateway_id = "aws_internet_gateway.prod-igw.id" 
+        gateway_id = aws_internet_gateway.prod-igw.id 
     }
     
     tags = {
@@ -22,7 +22,7 @@ resource "aws_route_table" "prod-public-inet" {
 }
 
 resource "aws_security_group" "ssh-allowed" {
-    vpc_id = "aws_vpc.prod-vpc.id"
+    vpc_id = aws_vpc.prod-vpc.id
     
     egress {
         from_port = 0
