@@ -7,3 +7,7 @@ resource "aws_subnet" "prod-subnet-public-1" {
         Name = "prod-subnet-public-1"
     }
 }
+
+######
+# subnet 2
+######
