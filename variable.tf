@@ -3,5 +3,24 @@ variable "AWS_REGION" {
 }
 
 variable "AMI" {
-   default  = "ami-0e2e44c03b85f58b3"
+   default  = "ami-056251cdd6fd1c8eb"
 }
+
+variable "EC2_USER" {
+   default = "centos"
+}
+
+variable "PRIVATE_KEY_PATH" {
+   description = "SSH public key to use for the connection."
+   type        = string
+   sensitive   = true
+   default = "~/.ssh/id_rsa"
+}
+
+variable "PUBLIC_KEY_PATH" {
+   description = "SSH private key to use for the connection."
+   type        = string
+   sensitive   = true
+   default = "~/.ssh/id_rsa.pub"
+}
+
