@@ -20,6 +20,12 @@ resource "aws_route_table" "prod-public-crt" {
     }
 }
 
+resource "aws_route_table_association" "internet" {
+    depends_on     = [aws_route_table.prod-public-crt]
+    route_table_id = aws_route_table.prod-public-crt.id
+    subnet_id      = aws_subnet.prod-subnet-public-1.id
+}
+
 resource "aws_security_group" "ssh-allowed" {
     vpc_id = "${aws_vpc.prod-vpc.id}"
     

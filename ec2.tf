@@ -26,6 +26,7 @@ resource "aws_instance" "web1" {
 
     connection {
         type = "ssh"
+        agent = false
         user = var.EC2_USER
         host = self.public_ip
         private_key = file(var.PRIVATE_KEY_PATH)
