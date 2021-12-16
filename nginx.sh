@@ -1,8 +1,8 @@
 # Add nginx Repository
-yum install epel-release
+yum install epel-release -y
 
 # Install nginx
-yum install nginx
+yum install nginx -y
 
 # start nginx service
 systemctl start nginx
